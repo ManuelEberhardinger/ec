@@ -31,3 +31,6 @@ ec-language-venv/
 language_experiments/
 tests/out/
 .DS_Store
+.vagrant/
+.merlin
+rust_compressor/rust_compressor

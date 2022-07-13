@@ -192,7 +192,9 @@ def getTestingLikelihood(likelihood, result, iteration):
     from dreamcoder.domains.regex.groundtruthRegexes import badRegexTasks
     testingTasks = [t for t in result.getTestingTasks()
                     if t.name not in badRegexTasks]
-
+    print('No. of testing tasks:', len(testingTasks))
+    print(badRegexTasks)
+    print( result.getTestingTasks())
     print("Getting testing likelihoods; we have to do this once per checkpoint and once per iteration so hang on to your seat!")
     from dreamcoder.domains.regex.makeRegexTasks import regexHeldOutExamples
     totalCharacters = sum( len(s)
@@ -201,6 +203,7 @@ def getTestingLikelihood(likelihood, result, iteration):
     print("Total number of characters in testing tasks is",totalCharacters)    
     return sum(getLikelihood(likelihood, result, task, iteration)
                for task in testingTasks )/totalCharacters
+
 def getTrainingLikelihood(likelihood, result, iteration):
     totalCharacters = sum(len(s)
                           for task in result.taskSolutions.keys()
@@ -346,6 +349,7 @@ def plotECResult(
 
         results.append(result)
         parameters.append(parseResultsPath(path))
+        print(parameters[-1].__dict__)
         if currentColor is not None:
             colors.append(currentColor)
 
@@ -422,6 +426,7 @@ def plotECResult(
             ys = loadPickle(cachingFileKey)
         else:
             result = loadfun(result)
+            #print(result)
             if likelihood is not None or cutoff is not None:
                 if arguments.goodPrior:
                     print("WARNING: Skipping prior update - you better already have updated the priors!")

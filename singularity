@@ -48,6 +48,8 @@ From: ubuntu
     opam switch create 4.06.1+flambda
     eval `opam config env`
     opam install -y  ppx_jane core re2 yojson vg cairo2 camlimages menhir ocaml-protoc zmq utop jbuilder
+    opam install -y menhir.20211128
+    opam reinstall -y yojson.1.6.0 
     echo "
 #use "topfind";;
 #thread;;
